@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Enhanced Accessible HTML5 Form Demo</title>
+  <meta name="description" content="A single-file example with semantic layout, structured content, media, and a complete HTML5 form with validation." />
+  <meta name="robots" content="index,follow" />
+  <style>
+    :root {
+      --bg:#ffffff; --ink:#111; --surface:#f6f8fa; --primary:#1f6feb; --muted:#6b7280; --focus:#ffb703;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{ --bg:#0b0f14; --ink:#e6edf3; --surface:#0f172a; --primary:#7aa2ff; --muted:#9aa7b1; --focus:#ffd166 }
+    }
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Helvetica,Arial;line-height:1.6;background:var(--bg);color:var(--ink)}
+    .container{max-width:72rem;margin:0 auto;padding:1rem}
+    header, footer{background:var(--surface)}
+    header{border-bottom:1px solid rgba(0,0,0,.08)}
+    footer{border-top:1px solid rgba(0,0,0,.08);padding:2rem 0;margin-top:2rem}
+    nav ul{display:flex;gap:1rem;list-style:none;padding:0;margin:.25rem 0 0 0;flex-wrap:wrap}
+    a{color:var(--primary)}
+    a:focus{outline:3px solid var(--focus);outline-offset:2px}
+    .skip-link{position:absolute;left:-9999px}
+    .skip-link:focus{left:1rem;top:1rem;background:var(--focus);color:#111;padding:.5rem .75rem;border-radius:.5rem}
+    main{display:grid;gap:2rem}
+    @media (min-width: 960px){ main{grid-template-columns:3fr 1fr} }
+    article, aside{background:var(--surface);border:1px solid rgba(0,0,0,.06);border-radius:.75rem;padding:1rem}
+    h1{font-size:clamp(1.8rem,3vw,2.2rem);margin:.5rem 0}
+    h2{margin-top:1.25rem;font-size:1.35rem}
+    h3{margin-top:1rem;font-size:1.1rem}
+    figure{margin:1rem 0}
+    figcaption{color:var(--muted);font-size:.95rem}
+    table{width:100%;border-collapse:collapse;margin:.5rem 0}
+    th,td{padding:.5rem;border:1px solid rgba(0,0,0,.12)}
+    caption{text-align:left;font-weight:600;margin-bottom:.25rem}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+    form{display:grid;gap:1rem}
+    .grid{display:grid;gap:1rem}
+    @media (min-width:720px){ .grid.cols-2{grid-template-columns:1fr 1fr} }
+    label{display:block;font-weight:600}
+    input, select, textarea, button{font:inherit}
+    input, select, textarea{width:100%;padding:.6rem .7rem;border:1px solid rgba(0,0,0,.2);border-radius:.5rem;background:#fff0;color:inherit}
+    textarea{min-height:120px}
+    .hint{color:var(--muted);font-size:.95rem}
+    fieldset{border:1px solid rgba(0,0,0,.15);border-radius:.5rem;padding:1rem}
+    legend{font-weight:700;padding:0 .25rem}
+    .inline{display:flex;gap:1rem;flex-wrap:wrap}
+    .inline > label{font-weight:400}
+    .note{background:#fffbdd;color:#3b2f00;padding:.75rem;border-radius:.5rem;border:1px solid #f2e088}
+    .actions{display:flex;gap:.75rem;flex-wrap:wrap}
+    button{padding:.6rem .9rem;border:1px solid rgba(0,0,0,.2);border-radius:.5rem;background:var(--primary);color:#fff;cursor:pointer}
+    button.secondary{background:#1111;border-color:rgba(0,0,0,.2);color:inherit}
+    .example-media{display:grid;gap:1rem}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header role="banner">
+    <div class="container">
+      <h1>Enhanced Form & Structured Content</h1>
+      <p id="tagline">A single HTML file (<strong>enhanced-form.html</strong>) showcasing semantic layout, lists, tables, media, and a fully validated HTML5 form.</p>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#overview" aria-current="page">Overview</a></li>
+          <li><a href="#content">Structured Content</a></li>
+          <li><a href="#form">Enhanced Form</a></li>
+          <li><a href="#media">Media</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container" role="main">
+    <article id="overview" aria-labelledby="overview-title">
+      <h2 id="overview-title">Overview</h2>
+      <p class="note" role="note">This page demonstrates: <strong>semantic HTML</strong>, <strong>well-structured content</strong> (lists, tables, media), and a <strong>complete, accessible HTML5 form</strong> using required attributes, placeholders, autocomplete, readonly, patterns, ranges, and native validation.</p>
+
+      <section id="content" aria-labelledby="content-title">
+        <h3 id="content-title">Structured Content</h3>
+        <div class="grid cols-2">
+          <section>
+            <h4>Key Points (List)</h4>
+            <ul>
+              <li>Semantic landmarks: <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code></li>
+              <li>Accessible labels and captions</li>
+              <li>Native HTML5 validation (types, patterns, min/max)</li>
+            </ul>
+            <h4>Definitions (DL)</h4>
+            <dl>
+              <dt>Readonly</dt>
+              <dd>An input that is submitted but not editable by the user.</dd>
+              <dt>Autocomplete</dt>
+              <dd>Hints the browser on what kind of data to auto-fill.</dd>
+            </dl>
+          </section>
+          <section>
+            <h4>Comparison (Table)</h4>
+            <table>
+              <caption>Input attribute highlights</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Attribute</th>
+                  <th scope="col">Purpose</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>required</code></td>
+                  <td>Prevents form submission without a value.</td>
+                </tr>
+                <tr>
+                  <td><code>pattern</code></td>
+                  <td>Enforces a regex format (e.g., phone).</td>
+                </tr>
+                <tr>
+                  <td><code>min</code> / <code>max</code> / <code>step</code></td>
+                  <td>Constrain numeric/date inputs.</td>
+                </tr>
+                <tr>
+                  <td><code>readonly</code></td>
+                  <td>Displays fixed data that still submits.</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+        </div>
+      </section>
+
+      <section id="media" aria-labelledby="media-title" class="example-media">
+        <h3 id="media-title">Media with Alternatives</h3>
+        <figure>
+          <img src="https://via.placeholder.com/960x540.png?text=Product+Preview" alt="Screenshot preview of the product form in a desktop browser." width="960" height="540" loading="lazy" />
+          <figcaption>Figure 1. Example image with descriptive alternative text.</figcaption>
+        </figure>
+        <figure>
+          <video controls width="640" height="360" preload="metadata" poster="https://via.placeholder.com/640x360.png?text=Video+Poster">
+            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+            <track kind="captions" label="English" srclang="en" src="https://raw.githubusercontent.com/mdn/learning-area/main/html/multimedia-and-embedding/video-and-audio-content/video/sintel-en.vtt" default>
+            Sorry, your browser doesn't support embedded videos.
+          </video>
+          <figcaption>Figure 2. Sample video with captions track enabled.</figcaption>
+        </figure>
+      </section>
+    </article>
+
+    <aside aria-labelledby="tips-title">
+      <h2 id="tips-title">Tips</h2>
+      <ol>
+        <li>Always pair inputs with <strong>labels</strong>.</li>
+        <li>Use <strong>fieldset</strong> and <strong>legend</strong> for related groups.</li>
+        <li>Prefer native input types to leverage built-in validation.</li>
+      </ol>
+    </aside>
+  </main>
+
+  <section id="form" class="container" aria-labelledby="form-title">
+    <article aria-labelledby="form-title">
+      <h2 id="form-title">Enhanced HTML5 Form</h2>
+      <p class="hint" id="form-help">All fields marked with <span aria-hidden="true">*</span> are required. Native HTML5 validation is enabled.</p>
+
+      <form action="#" method="post" aria-describedby="form-help">
+        <input type="hidden" name="context" value="enhanced-form-demo" />
+
+        <div class="grid cols-2">
+          <div>
+            <label for="firstName">First name <span aria-hidden="true">*</span></label>
+            <input id="firstName" name="given-name" type="text" placeholder="Jane" autocomplete="given-name" required minlength="2" maxlength="60" />
+          </div>
+          <div>
+            <label for="lastName">Last name <span aria-hidden="true">*</span></label>
+            <input id="lastName" name="family-name" type="text" placeholder="Doe" autocomplete="family-name" required minlength="2" maxlength="60" />
+          </div>
+        </div>
+
+        <div class="grid cols-2">
+          <div>
+            <label for="email">Email <span aria-hidden="true">*</span></label>
+            <input id="email" name="email" type="email" placeholder="jane@example.com" autocomplete="email" required />
+          </div>
+          <div>
+            <label for="phone">Phone <span aria-hidden="true">*</span></label>
+            <input id="phone" name="tel" type="tel" placeholder="(555) 123-4567" autocomplete="tel" inputmode="tel" required pattern="^\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$" title="Enter a 10-digit US phone number (e.g., 555-123-4567)." />
+          </div>
+        </div>
+
+        <div class="grid cols-2">
+          <div>
+            <label for="password">Password <span aria-hidden="true">*</span></label>
+            <input id="password" name="new-password" type="password" placeholder="Create a strong password" autocomplete="new-password" required minlength="8" />
+            <p class="hint" id="password-hint">Minimum 8 characters; include letters and numbers.</p>
+          </div>
+          <div>
+            <label for="website">Website</label>
+            <input id="website" name="url" type="url" placeholder="https://example.com" autocomplete="url" />
+          </div>
+        </div>
+
+        <div class="grid cols-2">
+          <div>
+            <label for="age">Age</label>
+            <input id="age" name="age" type="number" placeholder="30" inputmode="numeric" min="13" max="120" step="1" />
+          </div>
+          <div>
+            <label for="favoriteColor">Favorite color</label>
+            <input id="favoriteColor" name="color" type="color" value="#1f6feb" />
+          </div>
+        </div>
+
+        <div class="grid cols-2">
+          <div>
+            <label for="date">Preferred date <span aria-hidden="true">*</span></label>
+            <input id="date" name="date" type="date" required />
+          </div>
+          <div>
+            <label for="time">Preferred time</label>
+            <input id="time" name="time" type="time" />
+          </div>
+        </div>
+
+        <div class="grid cols-2">
+          <div>
+            <label for="datetime">Availability (local)</label>
+            <input id="datetime" name="datetime" type="datetime-local" />
+          </div>
+          <div>
+            <label for="attendees">Attendees</label>
+            <input id="attendees" name="attendees" type="number" min="1" max="50" step="1" value="1" />
+          </div>
+        </div>
+
+        <div>
+          <label for="country">Country <span aria-hidden="true">*</span></label>
+          <input list="country-list" id="country" name="country" placeholder="Start typing…" required autocomplete="country-name" />
+          <datalist id="country-list">
+            <option value="United States"></option>
+            <option value="Kenya"></option>
+            <option value="United Kingdom"></option>
+            <option value="Canada"></option>
+            <option value="Australia"></option>
+          </datalist>
+        </div>
+
+        <fieldset>
+          <legend>Subscription Plan <span aria-hidden="true">*</span></legend>
+          <div class="inline" role="radiogroup" aria-labelledby="plan-label">
+            <span id="plan-label" class="sr-only">Choose one plan</span>
+            <label><input type="radio" name="plan" value="basic" required /> Basic</label>
+            <label><input type="radio" name="plan" value="pro" /> Pro</label>
+            <label><input type="radio" name="plan" value="enterprise" /> Enterprise</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Preferences</legend>
+          <div class="inline">
+            <label><input type="checkbox" name="pref_news" value="newsletter" checked /> Newsletter</label>
+            <label><input type="checkbox" name="pref_sms" value="sms" /> SMS alerts</label>
+            <label><input type="checkbox" name="pref_research" value="research" /> Research invites</label>
+          </div>
+        </fieldset>
+
+        <div class="grid cols-2">
+          <div>
+            <label for="topic">Topic</label>
+            <select id="topic" name="topic" autocomplete="section-subscription topic">
+              <option value="general">General</option>
+              <option value="billing">Billing</option>
+              <option value="support">Support</option>
+            </select>
+          </div>
+          <div>
+            <label for="interests">Interests (multiple)</label>
+            <select id="interests" name="interests" multiple size="4">
+              <option>Accessibility</option>
+              <option>SEO</option>
+              <option>Performance</option>
+              <option>Security</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label for="profile">Profile photo (PNG/JPG, max 2 files)</label>
+          <input id="profile" name="profile" type="file" accept="image/png, image/jpeg" multiple />
+        </div>
+
+        <div>
+          <label for="range">Satisfaction (0–10)</label>
+          <input id="range" name="satisfaction" type="range" min="0" max="10" step="1" value="5" oninput="document.getElementById('rangeOut').value = this.value" />
+          <output id="rangeOut" for="range">5</output>
+        </div>
+
+        <div>
+          <label for="message">Message <span aria-hidden="true">*</span></label>
+          <textarea id="message" name="message" placeholder="Tell us how we can help" required minlength="10" maxlength="500"></textarea>
+          <p class="hint" id="msg-hint">10–500 characters.</p>
+        </div>
+
+        <div>
+          <label for="ref">Referral code (readonly)</label>
+          <input id="ref" name="ref" type="text" value="WELCOME2025" readonly />
+        </div>
+
+        <div class="inline">
+          <label><input type="checkbox" name="terms" required /> I agree to the <a href="#" target="_blank" rel="noopener">terms and conditions</a> <span aria-hidden="true">*</span></label>
+        </div>
+
+        <div class="actions">
+          <button type="submit">Submit</button>
+          <button type="reset" class="secondary">Reset</button>
+        </div>
+      </form>
+    </article>
+  </section>
+
+  <footer role="contentinfo">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Example Co. • <a href="#overview">Back to top</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // Cosmetic: current year + keep output synced for range input
+    (function(){
+      const y = document.getElementById('year');
+      if (y) y.textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
